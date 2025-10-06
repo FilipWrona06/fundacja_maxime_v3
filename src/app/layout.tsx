@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Montserrat } from 'next/font/google';
 import localFont from 'next/font/local';
+import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -44,10 +46,12 @@ export default function RootLayout({
     <html lang="pl">
       <body className={`${montserrat.variable} ${fontYoungest.variable}`}>
         <Navbar />
-          <main>
-            {children}
-          </main>
+        <main>
+          {children}
+        </main>
         <Footer />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
