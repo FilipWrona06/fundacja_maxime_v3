@@ -3,10 +3,10 @@
 import { useState, useEffect, FormEvent } from 'react';
 import jsonp from 'jsonp';
 import { FaFacebook, FaInstagram, FaYoutube, FaHeart } from 'react-icons/fa';
-import NavigationLink from '../NavigationLink';
-import Button from '../Button';
-import Logo from '../Logo';
-import SocialLink from '../SocialLink'; // <-- NOWY IMPORT
+import NavigationLink from '@/components/NavigationLink';
+import Button from '@/components/Button';
+import Logo from '@/components/Logo';
+import SocialLink from '@/components/SocialLink'; // <-- NOWY IMPORT
 
 const Footer = () => {
   const [email, setEmail] = useState('');

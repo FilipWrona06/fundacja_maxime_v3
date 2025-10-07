@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import Button from '../../components/Button'; // Import komponentu Button
+import Button from '@/components/Button'; // Import komponentu Button
 
 // =======================================================
 //  1. CENTRALNA DEFINICJA DANYCH DLA WYDARZEŃ

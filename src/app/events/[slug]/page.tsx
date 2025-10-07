@@ -1,7 +1,7 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
-import Button from '../../../components/Button'; // <-- IMPORT KOMPONENTU
+import Button from '@/components/Button'; // <-- IMPORT KOMPONENTU
 
 // =======================================================
 //  1. CENTRALNA DEFINICJA DANYCH DLA WYDARZEŃ

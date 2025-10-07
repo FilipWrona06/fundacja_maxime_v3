@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
-import Link from 'next/link';
 import React from 'react';
+import Button from '@/components/Button'; // <-- IMPORT KOMPONENTU
 
 // =====================================================
 //  1. CENTRALNA DEFINICJA DANYCH DLA AKTUALNOŚCI
@@ -52,7 +52,6 @@ export const newsData: NewsArticle[] = [
 //  2. FUNKCJE NEXT.JS DO OBSŁUGI DANYCH
 // =======================================================
 
-// Generuje statyczne strony dla każdego artykułu podczas budowania
 export async function generateStaticParams() {
   return newsData.map((article) => ({
     slug: article.slug,
@@ -98,16 +97,18 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
           dangerouslySetInnerHTML={{ __html: article.content }}
         />
 
-        {/*Przycisk Powrotu*/}
+        {/* Przycisk Powrotu - Z UŻYCIEM KOMPONENTU Button */}
         <div className="text-center mt-12">
-          <Link
+          <Button
+            as="link"
             href="/news"
-            className="bg-transparent border-2 border-philippineSilver rounded-full px-8 py-3 text-sm font-montserrat font-bold tracking-wider hover:bg-philippineSilver hover:text-raisinBlack transition-all duration-250"
+            variant="secondary"
+            className="rounded-full px-8 py-3 text-sm tracking-wider"
           >
             ← Wróć do aktualności
-          </Link>
+          </Button>
         </div>
       </div>
     </main>
   );
-}
+};

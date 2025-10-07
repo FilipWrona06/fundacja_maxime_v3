@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../components/Button'; // <-- IMPORT UNIWERSALNEGO KOMPONENTU
+import Button from '@/components/Button'; // <-- IMPORT UNIWERSALNEGO KOMPONENTU
 
 export default function Home() {
    return (

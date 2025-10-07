@@ -2,8 +2,8 @@
 
 import React, { FormEvent } from 'react';
 import { FaFacebook, FaInstagram, FaYoutube, FaHeart, FaMapMarkerAlt, FaEnvelope, FaPhone } from 'react-icons/fa';
-import Button from '../../components/Button';         // <-- IMPORT KOMPONENTU
-import SocialLink from '../../components/SocialLink'; // <-- IMPORT KOMPONENTU
+import Button from '@/components/Button';         // <-- IMPORT KOMPONENTU
+import SocialLink from '@/components/SocialLink'; // <-- IMPORT KOMPONENTU
 
 // =================================================================
 //  1. CENTRALNA DEFINICJA DANYCH KONTAKTOWYCH

@@ -1,9 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import NavigationLink from '../NavigationLink';
-import Logo from '../Logo';
-import Button from '../Button';
+import NavigationLink from '@/components/NavigationLink';
+import Logo from '@/components/Logo';
+import Button from '@/components/Button';
 
 // Definicja typu i danych dla linków nawigacyjnych
 type NavLinkData = {
