@@ -1,10 +1,9 @@
-// src/app/contact/page.tsx
-
 'use client';
 
 import React, { FormEvent } from 'react';
-// ZAKTUALIZOWANE: Dodajemy FaHeart do importów
 import { FaFacebook, FaInstagram, FaYoutube, FaHeart, FaMapMarkerAlt, FaEnvelope, FaPhone } from 'react-icons/fa';
+import Button from '../../components/Button';         // <-- IMPORT KOMPONENTU
+import SocialLink from '../../components/SocialLink'; // <-- IMPORT KOMPONENTU
 
 // =================================================================
 //  1. CENTRALNA DEFINICJA DANYCH KONTAKTOWYCH
@@ -35,7 +34,7 @@ export const contactDetails: ContactDetail[] = [
 ];
 
 // =================================================================
-//  2. ZAKTUALIZOWANE MAPOWANIE IKON
+//  2. MAPOWANIE IKON
 // =================================================================
 
 const contactIcons: { [key: string]: React.ReactNode } = {
@@ -43,7 +42,6 @@ const contactIcons: { [key: string]: React.ReactNode } = {
   Email: <FaEnvelope />,
   Telefon: <FaPhone />,
 };
-
 
 // =================================================================
 //  3. GŁÓWNY KOMPONENT STRONY KONTAKTOWEJ
@@ -87,26 +85,24 @@ export default function ContactPage() {
             <hr className="my-8 border-philippineSilver" />
             <h3 className="text-xl font-bold mb-4">Znajdź nas w sieci</h3>
             
-            {/* ================================================== */}
-            {/* ZAKTUALIZOWANE: Statyczna lista linków social media */}
-            {/* ================================================== */}
+            {/* UŻYCIE KOMPONENTU SocialLink */}
             <div className="flex gap-6 text-3xl">
-              <a href="https://www.facebook.com/stowarzyszeniemaxime" target="_blank" rel="noopener noreferrer" title="Nasz Facebook" className="text-2xl hover:text-philippineSilver transition-colors">
+              <SocialLink href="https://www.facebook.com/stowarzyszeniemaxime" title="Nasz Facebook" className="text-2xl hover:text-philippineSilver transition-colors">
                 <FaFacebook />
-              </a>
-              <a href="https://www.instagram.com/maxime.orchestra/" target="_blank" rel="noopener noreferrer" title="Nasz Instagram" className="text-2xl hover:text-philippineSilver transition-colors">
+              </SocialLink>
+              <SocialLink href="https://www.instagram.com/maxime.orchestra/" title="Nasz Instagram" className="text-2xl hover:text-philippineSilver transition-colors">
                 <FaInstagram />
-              </a>
-              <a href="https://www.youtube.com/@stowarzyszeniemaxime" target="_blank" rel="noopener noreferrer" title="Nasz kanał YouTube" className="text-2xl hover:text-philippineSilver transition-colors">
+              </SocialLink>
+              <SocialLink href="https://www.youtube.com/@stowarzyszeniemaxime" title="Nasz kanał YouTube" className="text-2xl hover:text-philippineSilver transition-colors">
                 <FaYoutube />
-              </a>
-              <a href="https://patronite.pl/stowarzyszeniemaxime" target="_blank" rel="noopener noreferrer" title="Wesprzyj nas na Patronite" className="text-2xl hover:text-philippineSilver transition-colors">
+              </SocialLink>
+              <SocialLink href="https://patronite.pl/stowarzyszeniemaxime" title="Wesprzyj nas na Patronite" className="text-2xl hover:text-philippineSilver transition-colors">
                 <FaHeart />
-              </a>
+              </SocialLink>
             </div>
           </div>
 
-          {/* --- SEKCJA FORMULARZA KONTAKTOWEGO (bez zmian) --- */}
+          {/* --- SEKCJA FORMULARZA KONTAKTOWEGO --- */}
           <div className="bg-transparent border-2 border-philippineSilver shadow-lg rounded-3xl p-8 transition-all">
             <form onSubmit={handleFormSubmit} className="space-y-6">
               <div>
@@ -122,12 +118,13 @@ export default function ContactPage() {
                 <textarea id="message" name="message" rows={4} required className="mt-1 block w-full px-4 py-2 bg-transparent border-2 border-philippineSilver rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-raisinBlack transition-all"></textarea>
               </div>
               <div>
-                <button
+                {/* UŻYCIE KOMPONENTU Button */}
+                <Button
                   type="submit"
-                  className="w-full flex justify-center py-3 px-4 bg-transparent border-2 border-philippineSilver hover:bg-philippineSilver hover:text-raisinBlack rounded-3xl shadow-lg hover:shadow-2xl hover:scale-105 text-lg font-bold focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-raisinBlack transition-all duration-250"
+                  className="w-full py-3 px-4"
                 >
                   Wyślij wiadomość
-                </button>
+                </Button>
               </div>
             </form>
           </div>

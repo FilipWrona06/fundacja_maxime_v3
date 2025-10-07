@@ -44,13 +44,13 @@ export default function Home() {
       <div className="relative z-30 flex flex-col sm:flex-row items-center justify-center gap-4">
         <Link 
           href="/events" 
-          className="bg-transparent border-2 border-philippineSilver rounded-full px-8 py-3 text-sm font-montserrat font-bold tracking-wider hover:bg-philippineSilver hover:text-raisinBlack transition-all duration-250"
+          className="bg-transparent border-2 border-philippineSilver rounded-full px-8 py-3 text-sm font-montserrat font-bold tracking-wider hover:bg-philippineSilver hover:text-raisinBlack transition-all hover:scale-105 duration-250 shadow-lg hover:shadow-2xl"
         >
           Zobacz nadchodzące koncerty
         </Link>
         <Link 
           href="/about" 
-          className="bg-transparent border-2 border-philippineSilver rounded-full px-8 py-3 text-sm font-montserrat font-bold tracking-wider hover:bg-philippineSilver hover:text-raisinBlack transition-all duration-250"
+          className="bg-transparent border-2 border-philippineSilver rounded-full px-8 py-3 text-sm font-montserrat font-bold tracking-wider hover:bg-philippineSilver hover:text-raisinBlack transition-all hover:scale-105 duration-250 shadow-lg hover:shadow-2xl"
         >
           Poznaj nas
         </Link>
