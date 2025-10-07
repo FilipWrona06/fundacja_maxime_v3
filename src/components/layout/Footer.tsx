@@ -118,6 +118,7 @@ const Footer = () => {
               />
               <Button
                 type="submit"
+                variant='secondary'
                 isLoading={status === 'loading'}
                 className="w-full px-4 py-2"
               >

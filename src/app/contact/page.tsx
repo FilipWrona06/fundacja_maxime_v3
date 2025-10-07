@@ -121,6 +121,7 @@ export default function ContactPage() {
                 {/* UŻYCIE KOMPONENTU Button */}
                 <Button
                   type="submit"
+                  variant='secondary'
                   className="w-full py-3 px-4"
                 >
                   Wyślij wiadomość

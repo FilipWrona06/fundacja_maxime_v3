@@ -57,6 +57,7 @@ const Navbar = () => {
                 href="https://patronite.pl/stowarzyszeniemaxime"
                 target="_blank"
                 rel="noopener noreferrer"
+                variant='secondary'
                 className="ml-4 px-5 py-2 text-sm"
               >
                 Wesprzyj nas
@@ -93,6 +94,7 @@ const Navbar = () => {
               target="_blank"
               rel="noopener noreferrer"
               onClick={closeMenu}
+              variant='secondary'
               className="w-full mt-2 px-5 py-3 text-base"
             >
               Wesprzyj nas

@@ -1,7 +1,7 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
-import Link from 'next/link';
+import Button from '../../../components/Button'; // <-- IMPORT KOMPONENTU
 
 // =======================================================
 //  1. CENTRALNA DEFINICJA DANYCH DLA WYDARZEŃ
@@ -112,12 +112,14 @@ export default function EventPage({ params }: { params: { slug: string } }) {
           />
           
           <div className="mt-12 text-center">
-            <Link
+            <Button
+              as="link"
               href="/events"
-              className="bg-transparent border-2 border-philippineSilver rounded-full px-8 py-3 text-sm font-montserrat font-bold tracking-wider hover:bg-philippineSilver hover:text-raisinBlack transition-all duration-250"
+              variant="secondary"
+              className="rounded-full px-8 py-3 text-sm tracking-wider transition-all"
             >
               ← Wróć do wszystkich wydarzeń
-            </Link>
+            </Button>
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import React from 'react';
+import Button from '../components/Button'; // <-- IMPORT UNIWERSALNEGO KOMPONENTU
 
 export default function Home() {
    return (
@@ -39,21 +39,25 @@ export default function Home() {
       </div>
 
       {/* ============================================ */}
-      {/* PRZYCISKI AKCJI*/}
+      {/* PRZYCISKI AKCJI - Z UŻYCIEM KOMPONENTU Button */}
       {/* ============================================ */}
       <div className="relative z-30 flex flex-col sm:flex-row items-center justify-center gap-4">
-        <Link 
-          href="/events" 
-          className="bg-transparent border-2 border-philippineSilver rounded-full px-8 py-3 text-sm font-montserrat font-bold tracking-wider hover:bg-philippineSilver hover:text-raisinBlack transition-all hover:scale-105 duration-250 shadow-lg hover:shadow-2xl"
+        <Button
+          as="link"
+          variant='secondary'
+          href="/events"
+          className="rounded-full px-8 py-3 text-sm tracking-wider transition-all"
         >
           Zobacz nadchodzące koncerty
-        </Link>
-        <Link 
-          href="/about" 
-          className="bg-transparent border-2 border-philippineSilver rounded-full px-8 py-3 text-sm font-montserrat font-bold tracking-wider hover:bg-philippineSilver hover:text-raisinBlack transition-all hover:scale-105 duration-250 shadow-lg hover:shadow-2xl"
+        </Button>
+        <Button
+          as="link"
+          variant='secondary'
+          href="/about"
+          className="rounded-full px-8 py-3 text-sm tracking-wider transition-all"
         >
           Poznaj nas
-        </Link>
+        </Button>
       </div>
 
     </main>

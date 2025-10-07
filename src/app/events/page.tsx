@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import Button from '../../components/Button'; // Import komponentu Button
 
 // =======================================================
 //  1. CENTRALNA DEFINICJA DANYCH DLA WYDARZEŃ
@@ -61,11 +62,11 @@ export const eventsData: Event[] = [
 // ========================================================
 //  2. GŁÓWNY KOMPONENT STRONY Z LISTĄ WYDARZEŃ
 // ========================================================
-export default function EventsPage(){
-    const upcomingEvents = eventsData.filter((event) => event.status !== 'zakończone');
+export default function EventsPage() {
+  const upcomingEvents = eventsData.filter((event) => event.status !== 'zakończone');
   const pastEvents = eventsData.filter((event) => event.status === 'zakończone');
 
-    return (
+  return (
     <main className="min-h-screen">
       <div className="container mx-auto px-4 py-16">
         <header className="text-center mb-12">
@@ -109,19 +110,25 @@ export default function EventsPage(){
                         </div>
                         <div>
                           {event.status === 'nadchodzące' && (
-                            <Link
+                            <Button
+                              as="link"
                               href={event.ticketUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="mt-6 w-full md:w-auto inline-block text-center px-6 py-3 font-bold text-white bg-raisinBlack rounded-lg hover:bg-opacity-80 transition-all shadow-md hover:shadow-lg"
+                              variant="secondary" // <-- ZMIANA Z 'primary' NA 'secondary'
+                              className="mt-6 w-full md:w-auto px-6 py-3 rounded-full" // Dodano `rounded-full` dla spójności
                             >
                               Kup Bilet
-                            </Link>
+                            </Button>
                           )}
                           {event.status === 'wyprzedane' && (
-                            <button disabled className="mt-6 w-full md:w-auto px-6 py-3 font-bold text-gray-700 bg-gray-200 rounded-lg cursor-not-allowed">
+                            <Button
+                              disabled
+                              variant="secondary" // <-- ZMIANA Z 'primary' NA 'secondary'
+                              className="mt-6 w-full md:w-auto px-6 py-3 rounded-full"
+                            >
                               Wyprzedane
-                            </button>
+                            </Button>
                           )}
                         </div>
                       </div>

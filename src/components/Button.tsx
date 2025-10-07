@@ -3,47 +3,59 @@
 import Link from 'next/link';
 import { ComponentProps, ReactNode } from 'react';
 
-// --- Proste typy tylko dla obecnych potrzeb ---
+type Variant = 'primary' | 'secondary';
+
+// --- Typy dla polimorfizmu (bez zmian) ---
 type BaseProps = {
   children: ReactNode;
   className?: string;
+  variant?: Variant;
   isLoading?: boolean;
 };
-
 type ButtonAsButton = BaseProps & { as?: 'button' } & ComponentProps<'button'>;
 type ButtonAsLink = BaseProps & { as: 'link'; href: string } & ComponentProps<typeof Link>;
-
 type ButtonProps = ButtonAsButton | ButtonAsLink;
 
 const Button = (props: ButtonProps) => {
   const { 
     as = 'button', 
+    variant = 'primary',
     isLoading = false,
     className = '', 
     children, 
     ...rest 
   } = props;
 
-  // --- STYLOWANIE ---
-  // Wszystkie klasy stylu są teraz połączone w jedną stałą,
-  // ponieważ nie ma wariantów.
-  const styleClasses = `
-    inline-flex items-center justify-center font-montserrat font-bold
-    rounded-3xl transition-colors duration-250 hover:scale-105
-    disabled:opacity-50 disabled:cursor-not-allowed disabled:scale-100
-    shadow-lg
-    bg-transparent border-2 border-philippineSilver
-    hover:bg-philippineSilver hover:text-raisinBlack hover:shadow-2xl
+  // --- STYLOWANIE (Z POPRAWKAMI) ---
+  const baseClasses = `
+    inline-flex items-center justify-center font-bold
+    transition-all duration-250
+    disabled:cursor-not-allowed
   `;
+
+  const variantClasses: Record<Variant, string> = {
+    // Wariant główny (np. dla przyszłych przycisków) zachowuje lekko zaokrąglone rogi
+    primary: `
+      bg-raisinBlack text-white hover:bg-opacity-80
+      shadow-md hover:shadow-lg rounded-lg
+      disabled:bg-gray-200 disabled:text-gray-700 disabled:shadow-none
+    `,
+    // Nasz główny wariant "ghost" otrzymuje domyślne zaokrąglenie `rounded-3xl`
+    secondary: `
+      bg-transparent border-2 border-philippineSilver
+      hover:bg-philippineSilver hover:text-raisinBlack
+      shadow-lg hover:shadow-2xl hover:scale-105 rounded-3xl
+      disabled:opacity-50 disabled:scale-100
+    `,
+  };
 
   const loadingClasses = isLoading ? 'opacity-75 cursor-wait' : '';
 
-  // Łączymy wbudowane style z tymi przekazanymi przez `className`
-  const finalClassName = `${styleClasses} ${loadingClasses} ${className}`.trim().replace(/\s+/g, ' ');
+  const finalClassName = `${baseClasses} ${variantClasses[variant]} ${loadingClasses} ${className}`.trim().replace(/\s+/g, ' ');
 
-  // --- RENDEROWANIE ---
+  // --- RENDEROWANIE (bez zmian) ---
   const content = isLoading ? 'Ładowanie...' : children;
-
+  
   if (as === 'link') {
     const linkProps = rest as Omit<ButtonAsLink, keyof BaseProps | 'as'>;
     return (
