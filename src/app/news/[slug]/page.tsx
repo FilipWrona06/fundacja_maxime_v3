@@ -1,67 +1,23 @@
+// src/app/news/[slug]/page.tsx
 import { notFound } from 'next/navigation';
-import Image from 'next/image';
-import React from 'react';
-import Button from '@/components/Button'; // <-- IMPORT KOMPONENTU
+import { newsData } from '../page'; // <-- KLUCZOWY IMPORT Z CENTRALNEGO PLIKU!
 
-// =====================================================
-//  1. CENTRALNA DEFINICJA DANYCH DLA AKTUALNOŚCI
-// ====================================================
-
-export interface NewsArticle {
-  id: number;
-  title: string;
-  date: string;
-  excerpt: string;
-  imageSrc: string;
-  slug: string;
-  content: string;
-}
-
-export const newsData: NewsArticle[] = [
-  {
-    id: 1,
-    title: 'Wielkie otwarcie nowego oddziału Fundacji',
-    date: '12 września 2025',
-    excerpt: 'Z radością informujemy, że otworzyliśmy nowy oddział w Krakowie. Dziękujemy wszystkim za wsparcie i zaangażowanie w rozwój naszej misji.',
-    imageSrc: '/news/news1.jpg',
-    slug: 'wielkie-otwarcie-nowego-oddzialu-fundacji',
-    content: `<p>To był dla nas wyjątkowy dzień! Z dumą i radością otworzyliśmy nowy oddział naszej fundacji w sercu Krakowa. Nowa placówka pozwoli nam dotrzeć z pomocą do jeszcze większej liczby potrzebujących w regionie Małopolski.</p><p>Uroczystość uświetnili swoją obecnością przedstawiciele władz miasta, nasi wieloletni darczyńcy oraz wolontariusze. Dziękujemy za każde dobre słowo i wsparcie, które otrzymaliśmy. Przed nami wiele wyzwań, ale jesteśmy pełni optymizmu i energii do działania!</p>`,
-  },
-  {
-    id: 2,
-    title: 'Podsumowanie akcji charytatywnej "Zima 2025"',
-    date: '28 sierpnia 2025',
-    excerpt: 'Dzięki Waszej hojności udało nam się zebrać rekordową kwotę...',
-    imageSrc: '/news/news2.jpg',
-    slug: 'podsumowanie-akcji-charytatywnej-zima-2025',
-    content: `<p>Akcja "Zima 2025" przerosła nasze najśmielsze oczekiwania...</p>`,
-  },
-  {
-    id: 3,
-    title: 'Zapraszamy na warsztaty kreatywne dla dzieci',
-    date: '15 sierpnia 2025',
-    excerpt: 'Już w najbliższą sobotę odbędą się darmowe warsztaty plastyczne...',
-    imageSrc: '/news/news3.jpg',
-    slug: 'zapraszamy-na-warsztaty-kreatywne-dla-dzieci',
-    content: `<p>Kreatywność to supermoc! W najbliższą sobotę zapraszamy wszystkie dzieci...</p>`,
-  },
-];
+import ArticleBanner from './components/ArticleBanner';
+import ArticleHeader from './components/ArticleHeader';
+import ArticleContent from './components/ArticleContent';
+import ArticleReturnLink from './components/ArticleReturnLink';
 
 
-// ======================================================
-//  2. FUNKCJE NEXT.JS DO OBSŁUGI DANYCH
-// =======================================================
-
+// Funkcja generująca strony również korzysta z centralnych danych
 export async function generateStaticParams() {
   return newsData.map((article) => ({
     slug: article.slug,
   }));
 }
 
-// ======================================================
-//  3. GŁÓWNY KOMPONENT STRONY POJEDYNCZEGO ARTYKUŁU
-// =======================================================
+// Główny komponent strony
 export default function ArticlePage({ params }: { params: { slug: string } }) {
+  // Logika wyszukiwania artykułu pozostaje tutaj
   const article = newsData.find((a) => a.slug === params.slug);
 
   if (!article) {
@@ -71,43 +27,11 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
   return (
     <main className="container mx-auto px-4 py-12 md:py-20">
       <div className="max-w-3xl mx-auto">
-        <div className="relative w-full h-64 md:h-96 rounded-3xl overflow-hidden mb-8 shadow-2xl">
-          <Image
-            src={article.imageSrc}
-            alt={article.title}
-            fill
-            className="object-cover"
-            priority
-          />
-        </div>
-
-        <header>
-          <h1 className="text-3xl md:text-5xl font-bold leading-tight">
-            {article.title}
-          </h1>
-          <p className="mt-4 text-lg">
-            Opublikowano: {article.date}
-          </p>
-        </header>
-
+        <ArticleBanner src={article.imageSrc} alt={article.title} />
+        <ArticleHeader title={article.title} date={article.date} />
         <hr className="my-8 border-philippineSilver" />
-
-        <article 
-          className="prose prose-lg dark:prose-invert max-w-none"
-          dangerouslySetInnerHTML={{ __html: article.content }}
-        />
-
-        {/* Przycisk Powrotu - Z UŻYCIEM KOMPONENTU Button */}
-        <div className="text-center mt-12">
-          <Button
-            as="link"
-            href="/news"
-            variant="secondary"
-            className="rounded-full px-8 py-3 text-sm tracking-wider"
-          >
-            ← Wróć do aktualności
-          </Button>
-        </div>
+        <ArticleContent htmlContent={article.content} />
+        <ArticleReturnLink />
       </div>
     </main>
   );
